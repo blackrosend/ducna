@@ -21,6 +21,28 @@
     <title>D. App</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <style>
+        #rss article {
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            padding: 30px;
+            border-bottom: 1px solid gray;
+        }
+        
+        #rss article h2 {
+            font-size: 16px;
+            padding-left: 20px;
+        }
+        
+        #rss article h2 a {
+            text-decoration: none;
+        }
+        
+        #rss article img {
+            width: 150px;
+        }
+    </style>
 </head>
 
 <body>
@@ -33,10 +55,11 @@
                 </li>
                 <li>Home</li>
                 <li>About</li>
-                <li>Blog</li>
+                <li><a href="#">Store</a></li>
             </ul>
         </nav>
         <div class="container"></div>
+        <div id="rss"></div>
         <div class="footer">
             Copyright © 2021 D.NA All rights reserved.
             <p>
@@ -106,5 +129,44 @@
         setTheme(false);
       });
     </script>
-  </body>
+    <script>
+      //https://github.com/mdn/learning-area/blob/main/javascript/apis/fetching-data/can-store/can-script.js
+
+      // use fetch to retrieve the products and pass them to init
+      // report any errors that occur in the fetch operation
+      // once the products have been successfully loaded and formatted as a JSON object
+      // using response.json(), run the initialize() function
+
+      // var rss_url = "https://thanhnien.vn/rss/the-thao-318.rss";
+      // fetch(rss_url)
+      //   .then(response => {
+      //     if (!response.ok) {
+      //       throw new Error(`HTTP error: ${response.status}`);
+      //     }
+      //     //return response.json();
+      //     return response.text();
+      //   })
+      //   .then(str => initialize(str))
+      //   .catch(err => console.error(`Fetch problem: ${err.message}`));
+
+      // // sets up the app logic, declares required variables, contains all the other functions
+      // function initialize(news) {
+      //   let news_doc = new window.DOMParser().parseFromString(news, "text/xml");
+
+      //   console.log(news_doc);
+      //   const items = news_doc.querySelectorAll("item");
+      //   let html = ``;
+      //   items.forEach(el => {
+      //     html += `
+      //   <article>
+      //     <img src="${el.querySelector("image").innerHTML}" alt="">
+      //     <h2><a href="${
+      //       el.querySelector("link").innerHTML
+      //     }" target="_blank" rel="noopener">
+      //         ${el.querySelector("title").innerHTML}
+      //       </a></h2>
+                // </article>`; }); $("#rss").html(html); }
+                </script>
+</body>
+
 </html>
