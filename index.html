@@ -48,7 +48,7 @@
     <script src="public/assets/js/app.js"></script>
     <script src="public/assets/js/index.js"></script>
     <script>
-      const ducna_local = {
+      var ducna_local = {
         language: "en",
         userTheme: {
           layout: "layout-default",
@@ -58,12 +58,15 @@
       };
       (function() {
         if (typeof Storage !== "undefined") {
-          if (localStorage.ducna_local == "undefined") {
-            localStorage.ducna_local = JSON.stringify(ducna_local);
-          }
-          //console.log(localStorage);
+          //localStorage.removeItem("ducna_local");
+          //localStorage.ducna_local = JSON.stringify(ducna_local);
+
+          if (localStorage.ducna_local) {
+            ducna_local = JSON.parse(localStorage.ducna_local);
+            //console.log(ducna_local);
+          } else localStorage.ducna_local = JSON.stringify(ducna_local);
         } else {
-          // Sorry! No Web Storage support..
+          console.log("No Web Storage support..");
         }
       })();
       (function setThemeMode() {
