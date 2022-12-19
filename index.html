@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" theme-mode="light">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="public/assets/css/style.css" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <!-- ios support -->
+    <link rel="apple-touch-icon" href="public/assets/icons/icon-72x72.png" />
+    <link rel="apple-touch-icon" href="public/assets/icons/icon-96x96.png" />
+    <link rel="apple-touch-icon" href="public/assets/icons/icon-128x128.png" />
+    <link rel="apple-touch-icon" href="public/assets/icons/icon-144x144.png" />
+    <link rel="apple-touch-icon" href="public/assets/icons/icon-152x152.png" />
+    <link rel="apple-touch-icon" href="public/assets/icons/icon-192x192.png" />
+    <link rel="apple-touch-icon" href="public/assets/icons/icon-384x384.png" />
+    <link rel="apple-touch-icon" href="public/assets/icons/icon-512x512.png" />
+    <meta name="apple-mobile-web-app-status-bar" content="#db4938" />
+    <meta name="theme-color" content="#db4938" />
+    <title>D. App</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+</head>
+
+<body>
+    <main>
+        <nav id="fix-header">
+            <h1>D. App</h1>
+            <ul>
+                <li>
+                    <span><i id="thememodetoggle" class="fas fa-moon"></i></span>
+                </li>
+                <li>Home</li>
+                <li>About</li>
+                <li>Blog</li>
+            </ul>
+        </nav>
+        <div class="container"></div>
+        <div class="footer">
+            Copyright © 2021 D.NA All rights reserved.
+            <p>
+                <a target="blank" href="https://www.ibrahima-ndaw.com/blog/how-to-build-pwa-with-javascript/">View Post</a
+          >
+        </p>
+      </div>
+    </main>
+    <script src="public/assets/js/app.js"></script>
+    <script src="public/assets/js/index.js"></script>
+    <script>
+      const ducna_local = {
+        language: "en",
+        userTheme: {
+          layout: "layout-default",
+          color: "#f9e8b9",
+          thememode: "light"
+        }
+      };
+      (function() {
+        if (typeof Storage !== "undefined") {
+          if (localStorage.ducna_local == "undefined") {
+            localStorage.ducna_local = JSON.stringify(ducna_local);
+          }
+          //console.log(localStorage);
+        } else {
+          // Sorry! No Web Storage support..
+        }
+      })();
+      (function setThemeMode() {
+        setTheme(true);
+      })();
+      // -------------------Change theme
+
+      function setTheme(load = true) {
+        var x = JSON.parse(localStorage.ducna_local);
+        let thememodetoggle = $("#thememodetoggle");
+        if (!load) {
+          if (x.userTheme.thememode == "dark") {
+            x.userTheme.thememode = "light";
+            thememodetoggle.removeClass("fas fa-sun");
+            thememodetoggle.addClass("fas fa-moon");
+          } else {
+            x.userTheme.thememode = "dark";
+            thememodetoggle.removeClass("fas fa-moon");
+            thememodetoggle.addClass("fas fa-sun");
+          }
+          localStorage.ducna_local = JSON.stringify(x);
+        }
+        if (x.userTheme.thememode == "light") {
+          thememodetoggle.removeClass("fas fa-sun");
+          thememodetoggle.addClass("fas fa-moon");
+        } else {
+          thememodetoggle.removeClass("fas fa-moon");
+          thememodetoggle.addClass("fas fa-sun");
+        }
+        document.documentElement.setAttribute(
+          "theme-mode",
+          x.userTheme.thememode
+        );
+      }
+      let thememodetoggle = $("#thememodetoggle");
+      thememodetoggle.click(function() {
+        setTheme(false);
+      });
+    </script>
+  </body>
+</html>
